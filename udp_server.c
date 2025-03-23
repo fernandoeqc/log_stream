@@ -6,6 +6,8 @@
    software is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
    CONDITIONS OF ANY KIND, either express or implied.
 */
+#include "udp_server.h"
+
 #include <string.h>
 #include <sys/param.h>
 #include "freertos/FreeRTOS.h"
@@ -14,9 +16,7 @@
 #include "esp_wifi.h"
 #include "esp_event.h"
 #include "esp_log.h"
-#include "nvs_flash.h"
 #include "esp_netif.h"
-#include "protocol_examples_common.h"
 
 #include "lwip/err.h"
 #include "lwip/sockets.h"
@@ -27,23 +27,14 @@
 
 static const char *TAG = "example";
 
-static void udp_server_task(void *pvParameters)
+void udp_server_task(void *pvParameters)
 {
-    // char rx_buffer[128];
-    // char addr_str[128];
-    // int addr_family = (int)pvParameters;
-    // int ip_protocol = 0;
-    // struct sockaddr_in6 dest_addr;
+    char rx_buffer[128];
+    char addr_str[128];
+    int addr_family = (int)pvParameters;
+    int ip_protocol = 0;
+    struct sockaddr_in6 dest_addr;
 
-    int sockfd;
-    struct addrinfo hints, *servinfo, *p;
-    int rv;
-    int numbytes;
-
-    memset(&hints, 0, sizeof hints);
-    hints.ai_family = AF_INET; // set to AF_INET to use IPv4
-    hints.ai_socktype = SOCK_DGRAM;
-    
     while (1)
     {
 
@@ -143,24 +134,4 @@ static void udp_server_task(void *pvParameters)
         }
     }
     vTaskDelete(NULL);
-}
-
-void app_main(void)
-{
-    ESP_ERROR_CHECK(nvs_flash_init());
-    ESP_ERROR_CHECK(esp_netif_init());
-    ESP_ERROR_CHECK(esp_event_loop_create_default());
-
-    /* This helper function configures Wi-Fi or Ethernet, as selected in menuconfig.
-     * Read "Establishing Wi-Fi or Ethernet Connection" section in
-     * examples/protocols/README.md for more information about this function.
-     */
-    ESP_ERROR_CHECK(example_connect());
-
-#ifdef CONFIG_EXAMPLE_IPV4
-    xTaskCreate(udp_server_task, "udp_server", 4096, (void *)AF_INET, 5, NULL);
-#endif
-#ifdef CONFIG_EXAMPLE_IPV6
-    xTaskCreate(udp_server_task, "udp_server", 4096, (void *)AF_INET6, 5, NULL);
-#endif
 }
