@@ -23,9 +23,14 @@
 #include "lwip/sys.h"
 #include <lwip/netdb.h>
 
-#define PORT CONFIG_EXAMPLE_PORT
+#define SERVERPORT CONFIG_SERVER_PORT
 
-static const char *TAG = "example";
+#define MULTICAST_GROUP "239.0.0.1" // Endereço do grupo multicast
+#define BUFFER_SIZE 1024
+
+static char *buffer;
+static size_t _bff_length;
+static QueueHandle_t buffer_queue;
 
 void udp_server_task(void *pvParameters)
 {
@@ -100,38 +105,22 @@ void udp_server_task(void *pvParameters)
                 ESP_LOGE(TAG, "recvfrom failed: errno %d", errno);
                 break;
             }
-            // Data received
-            else
-            {
-                // Get the sender's ip address as string
-                if (source_addr.ss_family == PF_INET)
-                {
-                    inet_ntoa_r(((struct sockaddr_in *)&source_addr)->sin_addr, addr_str, sizeof(addr_str) - 1);
-                }
-                else if (source_addr.ss_family == PF_INET6)
-                {
-                    inet6_ntoa_r(((struct sockaddr_in6 *)&source_addr)->sin6_addr, addr_str, sizeof(addr_str) - 1);
-                }
+int print_to_stream(const char *fmt, va_list list)
+{
+   int len = vsnprintf(buffer, _bff_length, fmt, list);
+   if (xQueueSend(buffer_queue, buffer, portMAX_DELAY) != pdPASS)
+   {
+      printf("Queue full\n");
+   }
+   return len;
+}
 
-                rx_buffer[len] = 0; // Null-terminate whatever we received and treat like a string...
-                ESP_LOGI(TAG, "Received %d bytes from %s:", len, addr_str);
-                ESP_LOGI(TAG, "%s", rx_buffer);
+void init_log_stream(size_t buffer_size, size_t buffer_max_len_inputs)
+{
+   _bff_length = buffer_max_len_inputs;
+   buffer_queue = xQueueCreate(buffer_size, buffer_max_len_inputs);
+   buffer = malloc(sizeof(char) * _bff_length);
+   ESP_ERROR_CHECK(buffer == NULL);
 
-                int err = sendto(sock, rx_buffer, len, 0, (struct sockaddr *)&source_addr, sizeof(source_addr));
-                if (err < 0)
-                {
-                    ESP_LOGE(TAG, "Error occurred during sending: errno %d", errno);
-                    break;
-                }
-            }
-        }
-
-        if (sock != -1)
-        {
-            ESP_LOGE(TAG, "Shutting down socket and restarting...");
-            shutdown(sock, 0);
-            close(sock);
-        }
-    }
-    vTaskDelete(NULL);
+   esp_log_set_vprintf(print_to_stream);
 }
