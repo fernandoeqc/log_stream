@@ -6,5 +6,5 @@ spec:
   type: asyncapi
   lifecycle: production
   owner: guest
-  definition: https://raw.githubusercontent.com/fernandoeqc/log_stream/main/docs/asyncapi.yaml
+  definition: https://raw.githubusercontent.com/fernandoeqc/log_stream/refs/heads/main/docs/asyncapi.yaml
 
