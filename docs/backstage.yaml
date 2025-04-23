@@ -5,5 +5,5 @@ kind: API
 spec:
   type: asyncapi
   lifecycle: production
-  owner: firmware-team
+  owner: guest
   definition: https://raw.githubusercontent.com/fernandoeqc/log_stream/refs/heads/main/docs/asyncap.yaml
