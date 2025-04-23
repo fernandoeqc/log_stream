@@ -1,42 +1,46 @@
 asyncapi: '2.6.0'
+
 info:
-  title: Ping/pong example with requester over the same channel
-  version: 1.0.0
-  description: Requester example initiating a request-reply interaction, utilizing the same channel for both sending the request and receiving the reply.
+  title: Documentação de firmware
+  version: 'v0.0.1'
+  # Adicione novas versões no topo da lista
+  description: |
+    <table>
+      <tr>
+        <td>
+          <strong>DAC4</strong><br>
+          <a href="#">v5.1.0</a><br>
+        </td>
+        <td>
+          <strong>DAL0</strong><br>
+          <a href="#">v4.1.3</a><br>
+        </td>
+        <td>
+          <strong>DAM3</strong><br>
+          <a href="#">2_7_4</a><br>
+        </td>
+        <td>
+          <strong>DMA0</strong><br>
+          <a href="#">v3.3.0</a><br>
+        </td>
+        <td>
+          <strong>DMT1</strong><br>
+          <a href="#">v3.4.2</a><br>
+        </td>
+        <td>
+          <strong>DRI0</strong><br>
+          <a href="#">v4.6.0</a><br>
+        </td>
+        <td>
+          <strong>DUT3</strong><br>
+          <a href="#">2_6_3</a><br>
+        </td>
+        <td></td>
+        <td></td>
+      </tr>
+    </table>
 
-channels:
-  ping:
-    publish:
-      operationId: pingRequest
-      message:
-        $ref: '#/components/messages/ping'
-  pong:
-    subscribe:
-      operationId: pingReply
-      message:
-        $ref: '#/components/messages/pong'
+servers: {}
+channels: {}
 
-components:
-  messages:
-    ping:
-      contentType: application/json
-      payload:
-        type: object
-        properties:
-          id:
-            type: string
-            description: Unique identifier for the request.
-          data:
-            type: string
-            description: The data to be sent in the ping request.
-    pong:
-      contentType: application/json
-      payload:
-        type: object
-        properties:
-          id:
-            type: string
-            description: Unique identifier for the response.
-          data:
-            type: string
-            description: The data to be sent in the pong response.
+
