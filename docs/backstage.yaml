@@ -13,42 +13,7 @@ spec:
       title: Documentação de firmware
       version: 'v0.0.1'
       # Adicione novas versões no topo da lista
-      description: |
-        <table>
-          <tr>
-            <td>
-              <strong>DAC4</strong><br>
-              <a href="#">v5.1.0</a><br>
-            </td>
-            <td>
-              <strong>DAL0</strong><br>
-              <a href="#">v4.1.3</a><br>
-            </td>
-            <td>
-              <strong>DAM3</strong><br>
-              <a href="#">2_7_4</a><br>
-            </td>
-            <td>
-              <strong>DMA0</strong><br>
-              <a href="#">v3.3.0</a><br>
-            </td>
-            <td>
-              <strong>DMT1</strong><br>
-              <a href="#">v3.4.2</a><br>
-            </td>
-            <td>
-              <strong>DRI0</strong><br>
-              <a href="#">v4.6.0</a><br>
-            </td>
-            <td>
-              <strong>DUT3</strong><br>
-              <a href="#">2_6_3</a><br>
-            </td>
-            <td></td>
-            <td></td>
-          </tr>
-        </table>
-    
+      description: Ola
     servers: {}
     channels:
       ping:
