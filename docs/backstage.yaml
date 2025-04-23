@@ -51,10 +51,12 @@ spec:
     
     servers: {}
     channels:
-      dac4/telemetry:
-        publish:
-          message:
+      ping:
+        address: teste
+        messages: 
+          ping:
             $ref: 'https://raw.githubusercontent.com/fernandoeqc/log_stream/refs/heads/main/docs/asyncapi.yaml'
+
 
 
 
