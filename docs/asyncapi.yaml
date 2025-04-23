@@ -1,5 +1,4 @@
-asyncapi: 3.0.0
-
+asyncapi: '2.6.0'
 info:
   title: Ping/pong example with requester over the same channel
   version: 1.0.0
@@ -7,24 +6,15 @@ info:
 
 channels:
   ping:
-    address: /
-    messages:
-      ping:
+    publish:
+      operationId: pingRequest
+      message:
         $ref: '#/components/messages/ping'
   pong:
-    address: /
-    messages:
-      pong:
+    subscribe:
+      operationId: pingReply
+      message:
         $ref: '#/components/messages/pong'
-
-operations:
-  pingRequest:
-    action: send
-    channel: 
-      $ref: '#/channels/ping'
-    reply:
-      channel: 
-        $ref: '#/channels/pong'
 
 components:
   messages:
