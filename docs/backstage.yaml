@@ -6,4 +6,5 @@ spec:
   type: asyncapi
   lifecycle: production
   owner: firmware-team
-  definition: https://github.com/fernandoeqc/log_stream/blob/main/docs/asyncapi.yaml
+  definition:
+    $text https://github.com/fernandoeqc/log_stream/blob/main/docs/asyncapi.yaml
