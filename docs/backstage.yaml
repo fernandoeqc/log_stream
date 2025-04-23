@@ -51,6 +51,11 @@ spec:
     
     servers: {}
     channels: {}
+    channels:
+      dac4/telemetry:
+        publish:
+          message:
+            $ref: 'https://raw.githubusercontent.com/fernandoeqc/log_stream/refs/heads/main/docs/asyncapi.yaml'
 
 
 
