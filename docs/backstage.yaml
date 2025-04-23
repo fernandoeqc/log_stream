@@ -1,0 +1,10 @@
+apiVersion: backstage.io/v1alpha1
+metadata:
+  name: firmware-docs
+kind: API
+spec:
+  type: asyncapi
+  lifecycle: production
+  owner: firmware-team
+  definition:
+    $text: https://github.com/dielenergia/techdocs/blob/teste-fw/docs/Api_sw_fw/asyncapi.yaml

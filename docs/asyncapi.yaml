@@ -1,0 +1,52 @@
+asyncapi: 3.0.0
+
+info:
+  title: Ping/pong example with requester over the same channel
+  version: 1.0.0
+  description: Requester example initiating a request-reply interaction, utilizing the same channel for both sending the request and receiving the reply.
+
+channels:
+  ping:
+    address: /
+    messages:
+      ping:
+        $ref: '#/components/messages/ping'
+  pong:
+    address: /
+    messages:
+      pong:
+        $ref: '#/components/messages/pong'
+
+operations:
+  pingRequest:
+    action: send
+    channel: 
+      $ref: '#/channels/ping'
+    reply:
+      channel: 
+        $ref: '#/channels/pong'
+
+components:
+  messages:
+    ping:
+      contentType: application/json
+      payload:
+        type: object
+        properties:
+          id:
+            type: string
+            description: Unique identifier for the request.
+          data:
+            type: string
+            description: The data to be sent in the ping request.
+    pong:
+      contentType: application/json
+      payload:
+        type: object
+        properties:
+          id:
+            type: string
+            description: Unique identifier for the response.
+          data:
+            type: string
+            description: The data to be sent in the pong response.
