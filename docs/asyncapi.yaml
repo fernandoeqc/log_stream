@@ -1,13 +1,9 @@
-components:
-  messages:
-    ping:
-      contentType: application/json
-      payload:
-        type: object
-        properties:
-          id:
-            type: string
-            description: Unique identifier for the request.
-          data:
-            type: string
-            description: The data to be sent in the ping request.
+name: ping
+contentType: application/json
+payload:
+  type: object
+  properties:
+    id:
+      type: string
+    data:
+      type: string
