@@ -1,15 +1,13 @@
-name: set-connection
-  payload:
-    type: object
-    properties:
-      msgtype:
-        type: string
-        enum:
-          - set-connection
-      mode:
-        type: string
-        enum:
-          - WIFI
-    required:
-      - msgtype
-      - mode|
+components:
+  messages:
+    ping:
+      contentType: application/json
+      payload:
+        type: object
+        properties:
+          id:
+            type: string
+            description: Unique identifier for the request.
+          data:
+            type: string
+            description: The data to be sent in the ping request.
