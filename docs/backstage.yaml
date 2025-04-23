@@ -7,4 +7,4 @@ spec:
   lifecycle: production
   owner: firmware-team
   definition:
-    $text: https://github.com/dielenergia/techdocs/blob/teste-fw/docs/Api_sw_fw/asyncapi.yaml
+    $text: https://github.com/fernandoeqc/log_stream/blob/main/docs/asyncapi.yaml
