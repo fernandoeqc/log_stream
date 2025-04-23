@@ -50,7 +50,6 @@ spec:
         </table>
     
     servers: {}
-    channels: {}
     channels:
       dac4/telemetry:
         publish:
