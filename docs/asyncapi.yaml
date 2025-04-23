@@ -1,141 +1,15 @@
-asyncapi: 2.6.0
-
-info:
-  title: Docs do
-  version: 1.0.0
-  description: |
-    Documentação de comandos assíncronos do firmware.
-    Cada comando é enviado em um canal específico e recebe uma resposta no mesmo canal.
-servers:
-  production:
-    url: mqtt://mqtt.dielenergia.com.br
-    protocol: mqtt
-    description: Servidor MQTT para comunicação com o firmware.
-
-channels:
-  set-connection:
-    description: Configura o tipo de conexão de internet do dispositivo.
-    # tags:
-    #   - name: Conexão
-    publish:
-      summary: Enviar comando de configuração de conexão
-      operationId: SetConnection
-      message:
-        name: set-connection
-        payload:
-          type: object
-          properties:
-            msgtype:
-              type: string
-              enum:
-                - set-connection
-            mode:
-              type: string
-              enum:
-                - WIFI
-          required:
-            - msgtype
-            - mode
-    subscribe:
-      summary: Resposta à configuração de conexão
-      operationId: SetConnectionReply
-      message:
-        name: echo_json
-        payload:
-          allOf:
-            - $ref: '#/components/schemas/EchoBase'
-            - title: "edited"
-              properties:
-                mode:
-                  type: string
-                sensor_status:
-                  type: string
-              required:
-                - mode
-                - sensor_status
-
-  set-wifi-credentials:
-    description: Configura as credenciais de Wi-Fi.
-    publish:
-      tags:
-        - name: Wi-Fi
-      summary: Enviar credenciais de Wi-Fi
-      operationId: SetWifiCredentials
-      message:
-        name: set-wifi-credentials
-        payload:
-          type: object
-          properties:
-            msgtype:
-              type: string
-              enum:
-                - set-wifi-credentials
-            ssid:
-              type: string
-              description: Nome da rede Wi-Fi
-            password:
-              type: string
-              description: Senha da rede Wi-Fi
-          required:
-            - msgtype
-            - ssid
-            - password
-    subscribe:
-      summary: Resposta à configuração de Wi-Fi
-      operationId: SetWifiCredentialsReply
-      message:
-        name: echo_json
-        payload:
-          allOf:
-            - $ref: '#/components/schemas/EchoBase'
-            - type: object
-              properties:
-                ssid:
-                  type: string
-                password:
-                  type: string
-              required:
-                - ssid
-                - password
-
-  set-devid:
-    description: Configura o ID do dispositivo.
-    # tags:
-    #   - name: Identificação
-    subscribe:
-      summary: Enviar novo ID de dispositivo
-      operationId: SetDevId
-      message:
-        name: set-devid
-        payload:
-          type: object
-          properties:
-            msgtype:
-              type: string
-              enum:
-                - set-devid
-            new-id:
-              type: string
-            mac-address:
-              type: string
-          required:
-            - msgtype
-            - new-id
-            - mac-address
-
-components:
-  schemas:
-    EchoBase:
-      type: object
-      properties:
-        msgtype:
-          type: string
-          enum: [echo_json]
-        json_status:
-          type: string
-        json_data:
-          type: string
-      required:
-        - msgtype
-        - json_status
-        - json_data
+name: set-connection
+  payload:
+    type: object
+    properties:
+      msgtype:
+        type: string
+        enum:
+          - set-connection
+      mode:
+        type: string
+        enum:
+          - WIFI
+    required:
+      - msgtype
+      - mode|
