@@ -5,5 +5,63 @@ payload:
   properties:
     id:
       type: string
-    data:
+      description: Identificador único da mensagem
+      example: "msg-123456"
+    timestamp:
       type: string
+      format: date-time
+      description: Data e hora do envio da mensagem
+      example: "2024-03-20T10:30:00Z"
+    type:
+      type: string
+      description: Tipo da mensagem
+      example: "ping"
+    data:
+      type: object
+      description: Dados da mensagem
+      properties:
+        status:
+          type: string
+          description: Status do sistema
+          example: "online"
+        version:
+          type: string
+          description: Versão do firmware
+          example: "1.0.0"
+        metrics:
+          type: object
+          description: Métricas do sistema
+          properties:
+            cpu:
+              type: number
+              description: Uso de CPU em porcentagem
+              example: 45.5
+            memory:
+              type: number
+              description: Uso de memória em MB
+              example: 1024
+            uptime:
+              type: number
+              description: Tempo de atividade em segundos
+              example: 3600
+  required:
+    - id
+    - timestamp
+    - type
+    - data
+  examples:
+    - |
+      {
+        "id": "msg-123456",
+        "timestamp": "2024-03-20T10:30:00Z",
+        "type": "ping",
+        "data": {
+          "status": "online",
+          "version": "1.0.0",
+          "metrics": {
+            "cpu": 45.5,
+            "memory": 1024,
+            "uptime": 3600
+          }
+        }
+      }

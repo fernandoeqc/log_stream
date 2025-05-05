@@ -7,7 +7,21 @@ spec:
   lifecycle: production
   owner: guest
   definition: |
-    $ref: './asyncapi-base.yaml'
+    asyncapi: 3.0.0
+    info:
+      title: Documentação de firmware
+      version: 1.0.0
+      description: Documentação da API de firmware
+    channels:
+      ping:
+        address: /ping
+        messages:
+          ping:
+            $ref: '#/components/messages/ping'
+    components:
+      messages:
+        ping:
+          $ref: './asyncapi.yaml'
 
 
 
