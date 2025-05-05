@@ -1,13 +1,19 @@
 apiVersion: backstage.io/v1alpha1
+kind: Component
 metadata:
-  name: firmware-docs
-kind: API
+  name: firmware-documentation
+  namespace: default
+  description: Documentação completa do firmware
+  annotations:
+    backstage.io/techdocs-ref: dir:.
 spec:
-  type: asyncapi
+  type: documentation
   lifecycle: production
   owner: firmware-team
-  definition:
-    $text: ./asyncapi-base.yaml
+  providesApis:
+    - api:default/dam-docs
+    - api:default/dut-docs
+    - api:default/dac-docs
 
 
 

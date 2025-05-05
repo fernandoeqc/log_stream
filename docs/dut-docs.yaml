@@ -1,0 +1,42 @@
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: dut-docs
+  namespace: default
+  description: Documentação DUT (Device Update and Testing)
+  annotations:
+    backstage.io/techdocs-ref: dir:.
+spec:
+  type: asyncapi
+  lifecycle: production
+  owner: guest
+  definition: |
+    asyncapi: 3.0.0
+    info:
+      title: DUT - Device Update and Testing
+      version: 1.0.0
+      description: Documentação da API de atualização e testes do dispositivo
+    channels:
+      test-execution:
+        address: /test/execution
+        messages:
+          execution:
+            $ref: '#/components/messages/execution'
+      test-results:
+        address: /test/results
+        messages:
+          results:
+            $ref: '#/components/messages/results'
+      test-config:
+        address: /test/config
+        messages:
+          config:
+            $ref: '#/components/messages/config'
+    components:
+      messages:
+        execution:
+          $ref: './dut/execution.yaml'
+        results:
+          $ref: './dut/results.yaml'
+        config:
+          $ref: './dut/config.yaml' 

@@ -1,0 +1,42 @@
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: dam-docs
+  namespace: default
+  description: Documentação DAM (Device Application Management)
+  annotations:
+    backstage.io/techdocs-ref: dir:.
+spec:
+  type: asyncapi
+  lifecycle: production
+  owner: guest
+  definition: |
+    asyncapi: 3.0.0
+    info:
+      title: DAM - Device Application Management
+      version: 1.0.0
+      description: Documentação da API de gerenciamento de aplicações do dispositivo
+    channels:
+      device-status:
+        address: /device/status
+        messages:
+          status:
+            $ref: '#/components/messages/status'
+      device-config:
+        address: /device/config
+        messages:
+          config:
+            $ref: '#/components/messages/config'
+      device-update:
+        address: /device/update
+        messages:
+          update:
+            $ref: '#/components/messages/update'
+    components:
+      messages:
+        status:
+          $ref: './dam/status.yaml'
+        config:
+          $ref: './dam/config.yaml'
+        update:
+          $ref: './dam/update.yaml' 

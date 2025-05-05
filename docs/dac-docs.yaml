@@ -1,0 +1,42 @@
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: dac-docs
+  namespace: default
+  description: Documentação DAC (Device Access Control)
+  annotations:
+    backstage.io/techdocs-ref: dir:.
+spec:
+  type: asyncapi
+  lifecycle: production
+  owner: guest
+  definition: |
+    asyncapi: 3.0.0
+    info:
+      title: DAC - Device Access Control
+      version: 1.0.0
+      description: Documentação da API de controle de acesso do dispositivo
+    channels:
+      auth:
+        address: /auth
+        messages:
+          auth:
+            $ref: '#/components/messages/auth'
+      permissions:
+        address: /permissions
+        messages:
+          permissions:
+            $ref: '#/components/messages/permissions'
+      access-log:
+        address: /access/log
+        messages:
+          log:
+            $ref: '#/components/messages/log'
+    components:
+      messages:
+        auth:
+          $ref: './dac/auth.yaml'
+        permissions:
+          $ref: './dac/permissions.yaml'
+        log:
+          $ref: './dac/log.yaml' 
