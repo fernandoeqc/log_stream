@@ -1,7 +1,7 @@
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: firmware-documentation
+  name: firmware-docs
   namespace: default
   description: Documentação completa do firmware
   annotations:
