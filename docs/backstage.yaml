@@ -21,7 +21,7 @@ spec:
     components:
       messages:
         ping:
-          $ref: './asyncapi.yaml'
+          $ref: 'https://raw.githubusercontent.com/fernandoeqc/log_stream/refs/heads/main/docs/asyncapi.yaml'
 
 
 
