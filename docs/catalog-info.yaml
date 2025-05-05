@@ -2,19 +2,16 @@ apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
   name: firmware-docs
-  namespace: default
-  description: Documentação completa do firmware
+  title: Firmware Documentation
+  description: Documentação destinada aos desenvolvedores da Diel Energia.
+  tags:
+    - documentation
   annotations:
     backstage.io/techdocs-ref: dir:.
+    backstage.io/techdocs-generator: mkdocs
+    backstage.io/techdocs-builder: local
 spec:
-  type: documentation
+  type: website
   lifecycle: production
-  owner: firmware-team
-  providesApis:
-    - api:default/dam-docs
-    - api:default/dut-docs
-    - api:default/dac-docs
-
-
-
-
+  owner: diel-team
+  domain: diel
