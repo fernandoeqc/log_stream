@@ -6,7 +6,7 @@ spec:
   type: asyncapi
   lifecycle: production
   owner: guest
-  definition: |
+  definition:
     $text: ./asyncapi-base.yaml
 
 
