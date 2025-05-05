@@ -7,7 +7,7 @@ spec:
   lifecycle: production
   owner: guest
   definition: |
-    $yaml: './asyncapi-base.yaml'
+    $text: './asyncapi-base.yaml'
 
 
 
