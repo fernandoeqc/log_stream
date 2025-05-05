@@ -22,6 +22,7 @@ spec:
       messages:
         ping:
           $ref: 'https://raw.githubusercontent.com/fernandoeqc/log_stream/refs/heads/main/docs/asyncapi.yaml'
+          
 
 
 
