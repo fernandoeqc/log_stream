@@ -1,0 +1,23 @@
+site_name: Firmware Documentation
+site_description: Documentação destinada aos desenvolvedores da Diel Energia.
+site_author: Diel Team
+
+theme:
+  name: material
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+
+nav:
+  - Home: docs/index.md
+  - DAM:
+    AsyncAPI: docs/dam/backstage.yaml
+  
+
+plugins:
+  - search
+  - mkdocs-material
+  - mkdocstrings
+  - mkdocs-jupyter 

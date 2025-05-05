@@ -1,0 +1,34 @@
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: dam
+  namespace: default
+  description: Documentação DAM (Device Access Management)
+  annotations:
+    backstage.io/techdocs-ref: dir:.
+spec:
+  type: asyncapi
+  lifecycle: production
+  owner: firmware-team
+  definition: |
+    asyncapi: 3.0.0
+    info:
+      title: DAM - Device Access Management
+      version: 1.0.0
+      description: Documentação da API de gerenciamento de acesso do dispositivo
+    channels:
+      auth:
+        address: /auth
+        messages:
+          auth:
+            $ref: '#/components/messages/auth'
+    components:
+      messages:
+        ping:
+          contentType: application/json
+          payload:
+            type: object
+            properties:
+              id:
+                type: string
+                description: Identificador único da mensagem
