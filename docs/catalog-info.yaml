@@ -5,7 +5,7 @@ kind: API
 spec:
   type: asyncapi
   lifecycle: production
-  owner: guest
+  owner: firmware-team
   definition:
     $text: ./asyncapi-base.yaml
 
