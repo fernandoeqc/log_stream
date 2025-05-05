@@ -7,20 +7,7 @@ spec:
   lifecycle: production
   owner: guest
   definition: |
-    asyncapi: '3.0.0'
-    
-    info:
-      title: Documentação de firmware
-      version: 'v0.0.1'
-      # Adicione novas versões no topo da lista
-      description: Ola
-    servers: {}
-    channels:
-      ping:
-        address: teste
-        messages: 
-          ping:
-            $ref: 'https://raw.githubusercontent.com/fernandoeqc/log_stream/refs/heads/main/docs/asyncapi.yaml'
+    $ref: './asyncapi-base.yaml'
 
 
 
